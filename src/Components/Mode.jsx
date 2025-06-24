@@ -1,14 +1,14 @@
 import { useTimer } from "../Contexts/TimerContext"
 
 export default function Mode () {
-    const {time} = useTimer();
+    const {time, mode} = useTimer();
     return (
         <div className="modes">
             <p className="mode">
-                Working 
+                {mode}
             </p>
             <p className="time-holder">
-                {time} : 00
+                {time|| 0} : 00
             </p>
         </div>
     )

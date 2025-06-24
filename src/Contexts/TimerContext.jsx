@@ -16,9 +16,3 @@ export function TimerProvider ({children }) {
     </TimerContext.Provider>
 
 }
-
-export function useTimer() {
-    const timerCtx = useContext(TimerContext)
-    if(!timerCtx) throw new Error("TimerContext must be used within the TimerProvider");
-    return timerCtx;
-}
