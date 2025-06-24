@@ -23,10 +23,11 @@ export function ActionCtxProvider({children}){
     const [longBreak, setLongBreak] = useState(false);
 
     useEffect(()=>{
-        
+        setMode("Start a Focus Session");
     }, []);
 
     function handleStartFocusSession() {
+
         setMode("In Focus Mode");
         if(isPaused === 0){
             setIsPaused(1)
@@ -41,7 +42,7 @@ export function ActionCtxProvider({children}){
 
     function handleReset() {
         setIsPaused(0);
-        set
+        
     }
         
     function handleShortBreak() {
