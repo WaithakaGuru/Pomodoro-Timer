@@ -1,0 +1,107 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --back-main-color: #252723;
+  --text-main-color: #E6DAC6;
+  --btn-back-color: #BDA57B;
+  --btn-text-color: #1F1F1F;
+  --input-back-color: #121311;
+  --input-text-color: var(--text-main-color);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+html{
+  font-size: 70%;
+}
+
+body{ 
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: #444;
+}
+
+#root{
+  background-color: var(--back-main-color);
+  color: var(--text-main-color);
+  font-size: 5rem;
+  width: 90%;
+  min-width: 350px;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  min-height: 40rem;
+  height: max-content;
+  border-radius: 2rem;
+  padding: 2rem 4rem;
+}
+
+.modes{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modes p{
+    font-size: 8rem;
+    font-weight: bold;
+}
+.modes .time-holder{
+    font-size: 10rem;
+}
+
+.btn-holder {
+    display: flex;
+    justify-content: center;
+    margin: 4rem auto;
+    gap: 3rem
+}
+
+.btn-holder button{
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    font-size: 3rem;
+    background-color: var(--btn-back-color);
+    color: var(--btn-text-color);
+    font-weight: 600;
+    text-wrap: nowrap;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+.btn-holder button:hover{
+    opacity: .9;
+}
+
+.set-time{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.time-input{
+    padding: 2rem 4rem;
+    border-radius: 1rem;
+    background-color: var(--input-back-color);
+    color: var(--input-text-color);
+    font-size: 4rem;
+    border: .3rem solid var(--btn-back-color);
+}
