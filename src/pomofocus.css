@@ -51,20 +51,42 @@ body{
   padding: 2rem 4rem;
 }
 
+header{
+  position: absolute;
+  top: -12%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: chocolate
+}
+
+header img{
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+header span{
+  color: orange;
+  margin-right: 2rem;
+}
+
 .modes{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+  gap: 1rem;
 }
 
 .modes p{
-    font-size: 8rem;
-    font-weight: bold;
+  font-size: 8rem;
+  font-weight: bold;
 }
 .modes .time-holder{
-    font-size: 10rem;
+  font-size: 10rem;
+  color: rgb(233, 130, 57);
 }
 
 .btn-holder {
@@ -83,11 +105,12 @@ body{
     font-weight: 600;
     text-wrap: nowrap;
     cursor: pointer;
-    transition: opacity .3s;
+    transition: opacity .3s, background-color .4s;
 }
 
 .btn-holder button:hover{
     opacity: .9;
+    background-color: chocolate;
 }
 
 .set-time{
