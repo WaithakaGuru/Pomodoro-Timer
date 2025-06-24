@@ -1,7 +1,9 @@
+import useActions from "../Hooks/ActionHook";
 import useTimer from "../Hooks/TimerHook";
 
 export default function Mode () {
-    const {time, mode} = useTimer ();
+    const {mode} = useActions();
+    const {time} = useTimer()
     return (
         <div className="modes">
             <p className="mode">

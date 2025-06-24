@@ -8,12 +8,18 @@ import './pomofocus.css'
 function Pomofocus () {
     return (
         <>
-            <header><img src="./PomoFocusIcon.png" alt="logo" />Pomo<span>Focus</span> Timer</header>
+            <header>
+                <img src="./PomoFocusIcon.png" alt="logo" />Pomo<span>Focus</span> Timer
+            </header>
             <TimerProvider>
-                <Mode/>
-                <SetTime/>
+                <ActionCtxProvider> 
+                    <Mode/>
+                </ActionCtxProvider>
+                    <SetTime/>
             </TimerProvider>
-            <ActionCtxProvider><ActionButtons/></ActionCtxProvider>
+            <ActionCtxProvider>
+                <ActionButtons/>
+            </ActionCtxProvider>
         </>
     )
 }
