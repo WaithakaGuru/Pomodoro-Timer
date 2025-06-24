@@ -90,41 +90,41 @@ header span{
 }
 
 .btn-holder {
-    display: flex;
-    justify-content: center;
-    margin: 4rem auto;
-    gap: 3rem
+  display: flex;
+  justify-content: center;
+  margin: 4rem auto;
+  gap: 3rem
 }
 
 .btn-holder button{
-    padding: 1rem 3rem;
-    border-radius: 1rem;
-    font-size: 3rem;
-    background-color: var(--btn-back-color);
-    color: var(--btn-text-color);
-    font-weight: 600;
-    text-wrap: nowrap;
-    cursor: pointer;
-    transition: opacity .3s, background-color .4s;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-size: 3rem;
+  background-color: var(--btn-back-color);
+  color: var(--btn-text-color);
+  font-weight: 600;
+  text-wrap: nowrap;
+  cursor: pointer;
+  transition: opacity .3s, background-color .4s;
 }
 
 .btn-holder button:hover{
-    opacity: .9;
-    background-color: chocolate;
+  opacity: .9;
+  background-color: chocolate;
 }
 
 .set-time{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 2rem auto;
 }
 
 .time-input{
-    padding: 2rem 4rem;
-    border-radius: 1rem;
-    background-color: var(--input-back-color);
-    color: var(--input-text-color);
-    font-size: 4rem;
-    border: .3rem solid var(--btn-back-color);
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+  background-color: var(--input-back-color);
+  color: var(--input-text-color);
+  font-size: 4rem;
+  border: .3rem solid var(--btn-back-color);
 }
