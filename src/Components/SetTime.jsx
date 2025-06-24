@@ -1,7 +1,7 @@
-import { useTimer } from "../Contexts/TimerContext"
+import useTimer from "../Hooks/TimerHook";
 
 export default function SetTime () {
-    const {time, handleAddTime} = useTimer();
+    const {time, handleAddTime} = useTimer ();
     return(
         <div className="set-time">
             <label htmlFor="timeInput">Set Time (in minutes) </label>

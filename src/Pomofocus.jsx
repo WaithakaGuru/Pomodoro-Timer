@@ -2,13 +2,13 @@ import ActionButtons from './Components/ActionButtons'
 import Mode from './Components/Mode'
 import SetTime from './Components/SetTime'
 import { ActionCtxProvider } from './Contexts/ActionsContext'
-import { TimerProvider, useTimer } from './Contexts/TimerContext'
+import { TimerProvider} from './Contexts/TimerContext'
 import './pomofocus.css'
 
 function Pomofocus () {
-    //   useTimer();
     return (
         <>
+            <header><img src="./PomoFocusIcon.png" alt="logo" />Pomo<span>Focus</span> Timer</header>
             <TimerProvider>
                 <Mode/>
                 <SetTime/>

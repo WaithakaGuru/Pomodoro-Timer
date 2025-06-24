@@ -1,7 +1,7 @@
-import { useTimer } from "../Contexts/TimerContext"
+import useTimer from "../Hooks/TimerHook";
 
 export default function Mode () {
-    const {time, mode} = useTimer();
+    const {time, mode} = useTimer ();
     return (
         <div className="modes">
             <p className="mode">
