@@ -52,7 +52,8 @@ export function ActionCtxProvider({children}){
         const totalSessionTime = fullSessionTime(minutes);
         // let focusSessionInterval;
         if(time.mins > 0 || time.secs > 0){
-            setInterval(()=>setTime(calculateTimeRemaining(totalSessionTime)), 980)
+            handleSetTimeInputReadOnly();
+            setInterval(()=>setTime(calculateTimeRemaining(totalSessionTime)), 999)
         }
         // clearInterval(focusSessionInterval)
     }
@@ -77,7 +78,7 @@ export function ActionCtxProvider({children}){
     }
 
     return <ActionContext.Provider value={
-        {mode, time, isPaused, activeButtonId, handleStartFocusSession, handleReset,
+        {mode, time, isPaused, activeButtonId, inputIsReadOnly, handleStartFocusSession, handleReset,
             handleShortBreak, handleLongBreak, handleAddTime}
         }>
         {children}
