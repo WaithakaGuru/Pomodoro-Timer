@@ -9,7 +9,6 @@ export function calculateTimeRemaining(fullTime) {
     
     let remainingMinutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     let secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / (1000))
-    console.log(remainingMinutes, ":", secondsRemaining);
     return {mins: remainingMinutes, secs: secondsRemaining};
 }
 
