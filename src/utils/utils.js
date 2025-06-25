@@ -1,6 +1,6 @@
 
 export function fullSessionTime (sessionTimeInMins) {
-    return  parseInt(new Date().getTime() + sessionTimeInMins * 1000 * 60);
+    return  new Date().getTime() + sessionTimeInMins * 1000 * 60;
 }
 
 export function calculateTimeRemaining(fullTime) {

@@ -15,6 +15,7 @@ export function ActionCtxProvider({children}){
     const [shortBreak, setShortBreak] = useState(false);
     const [longBreak, setLongBreak] = useState(false);
     const [inputIsReadOnly, setInputIsReadOnly] = useState(false);
+    const actionIntervalRef = useRef(null);
     
     useEffect(()=>{
         setMode("Start a Focus Session");
@@ -36,15 +37,18 @@ export function ActionCtxProvider({children}){
          * 4 - long break - session is on hold since user is taking a long break
         */
        
-        setActiveButtonId(e =>e.target.id);
+        setActiveButtonId(e.target.id);
 
         if(isPaused === 0){
+            // when user start a focus session
            setIsPaused(1)
            setMode(togglePauseModes(1));
         }else if(isPaused === 1) {
+            // when user pauses a focus session
             setIsPaused(2);
             setMode(togglePauseModes(2));
         }else{
+            // when user resumes a focus session 
             setIsPaused(1)
             setMode(togglePauseModes(1));
         }
@@ -52,14 +56,19 @@ export function ActionCtxProvider({children}){
         // THE COUNT DOWN LOGIC
         const minutes = time.mins;
         const totalSessionTime = fullSessionTime(minutes);
-        const actionIntervalRef = useRef();
         if (time.mins > 0 || time.secs > 0) {
             setInputIsReadOnly(true);
             if (!actionIntervalRef.current) {
-            actionIntervalRef.current = setInterval(() => {
-                setTime(calculateTimeRemaining(totalSessionTime));
-            }, 999);
+                actionIntervalRef.current = setInterval(() => {
+                    setTime(()=> calculateTimeRemaining(totalSessionTime));
+                }, 999);
             }
+        }
+        if(time.mins === 0 && time.secs === 0){
+            clearInterval(actionIntervalRef.current);
+            actionIntervalRef.current = null;
+            setIsPaused(0)
+           setMode(togglePauseModes(0));
         }
     }
     
