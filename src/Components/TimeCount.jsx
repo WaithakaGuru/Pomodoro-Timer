@@ -1,7 +1,7 @@
-import useTimer from "../Hooks/TimerHook";
+import useActions from "../Hooks/ActionHook";
 
 export default function TimeCounter () {
-    const {time} = useTimer();
+    const {time} = useActions ();
     return (
         <div className="modes">
             <p className="time-holder">
