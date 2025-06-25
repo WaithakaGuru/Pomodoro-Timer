@@ -6,7 +6,8 @@ export default function SetTime () {
         <div className="set-time">
             <label htmlFor="timeInput">Set Time (in minutes) </label>
             <input type="number" id="timeInput" 
-            className="time-input" value={time} 
+            placeholder="time in minutes"
+            className="time-input" value={time.mins} 
             onChange={handleAddTime}
             />
         </div>

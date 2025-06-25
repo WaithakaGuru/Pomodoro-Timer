@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import {calculateTimeRemaining, fullSessionTime} from "../utils/utils";
 
 const ActionContext = createContext();
 export default ActionContext;
@@ -6,7 +7,7 @@ export default ActionContext;
 export function ActionCtxProvider({children}){
     // states and functions
     const [mode, setMode] = useState("")
-    const [time, setTime] = useState(25);
+    const [time, setTime] = useState({mins: 25, secs: 0});
     const [isPaused, setIsPaused] = useState(0);
     const [activeButtonId, setActiveButtonId] = useState(null);
     const [reset, setReset] = useState(false);
@@ -23,8 +24,9 @@ export function ActionCtxProvider({children}){
     }
 
     function handleAddTime (e) {
-        setTime(e.target.value);
+        setTime({mins:e.target.value, secs: 0});
     }
+
     function handleStartFocusSession(e) {
        addActiveButton(e);
         /**
@@ -44,7 +46,14 @@ export function ActionCtxProvider({children}){
         }else{
             setIsPaused(1)
         }
-        
+
+        // THE COUNT DOWN LOGIC
+        const totalSessionTime = fullSessionTime(time.mins);
+        // let focusSessionInterval;
+        if(time.mins > 0 || time.secs > 0){
+            setInterval(()=>setTime(calculateTimeRemaining(totalSessionTime)), 980)
+        }
+        // clearInterval(focusSessionInterval)
     }
     
     function handleReset(e) {
@@ -56,12 +65,10 @@ export function ActionCtxProvider({children}){
         
     function handleShortBreak(e) {
         addActiveButton(e);
-        setIsActive(true);
     }
 
     function handleLongBreak(e) {
         addActiveButton(e);
-        setIsActive(true);
     }
 
     function handleSetTimeInputReadOnly() {
