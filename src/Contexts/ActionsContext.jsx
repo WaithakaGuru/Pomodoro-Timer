@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import {calculateTimeRemaining, fullSessionTime} from "../utils/utils";
+import togglePauseModes from "../utils/modeMapper";
 
 const ActionContext = createContext();
 export default ActionContext;
@@ -18,17 +19,12 @@ export function ActionCtxProvider({children}){
     useEffect(()=>{
         setMode("Start a Focus Session");
     }, []);
-    
-    function addActiveButton(e){
-        setActiveButtonId(e.target.id);
-    }
 
     function handleAddTime (e) {
         setTime({mins:e.target.value, secs: 0});
     }
    
     function handleStartFocusSession(e) {
-        addActiveButton(e);
         /**
          * PAUSE MODES 
          * 0 - Start - the count down not yet started, new Focus session e.g on page refresh
@@ -36,15 +32,21 @@ export function ActionCtxProvider({children}){
          *      for user to pause if need be
          * 2 - resume - user has paused the count down and
          *      btn displays 'resume' for user to resume the timer count down 
+         * 3 - short break - session is on hold since user is taking a short break
+         * 4 - long break - session is on hold since user is taking a long break
         */
        
-       if(isPaused === 0){
+        setActiveButtonId(e =>e.target.id);
+
+        if(isPaused === 0){
            setIsPaused(1)
+           setMode(togglePauseModes(1));
         }else if(isPaused === 1) {
-            setMode("Focus session on Hold");
             setIsPaused(2);
+            setMode(togglePauseModes(2));
         }else{
             setIsPaused(1)
+            setMode(togglePauseModes(1));
         }
         
         // THE COUNT DOWN LOGIC
@@ -59,18 +61,16 @@ export function ActionCtxProvider({children}){
     }
     
     function handleReset(e) {
-        addActiveButton(e);
-        setMode("In Focus Mode");
-        setIsPaused(0);
-        
+        setActiveButtonId(e.target.id);        setIsPaused(0);
+        setMode(togglePauseModes(isPaused))
     }
         
     function handleShortBreak(e) {
-        addActiveButton(e);
+        setActiveButtonId(e.target.id);
     }
 
     function handleLongBreak(e) {
-        addActiveButton(e);
+        setActiveButtonId(e.target.id);
     }
 
     return <ActionContext.Provider value={

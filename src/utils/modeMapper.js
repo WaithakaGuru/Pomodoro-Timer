@@ -1,4 +1,4 @@
-export default function handlePauseModes (modeNumber) {
+export default function togglePauseModes (modeNumber) {
     const modesMapper = [
         {code: 0, mode: "Start a Focus Session"},
         {code: 1, mode: "Focus session in Progress"},
@@ -11,4 +11,3 @@ export default function handlePauseModes (modeNumber) {
         if(modeMap.code === modeNumber) mappedMode = modeMap.mode;
     return mappedMode;
 }
-handlePauseModes(3)//?
