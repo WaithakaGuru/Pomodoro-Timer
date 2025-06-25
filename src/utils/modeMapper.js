@@ -4,11 +4,11 @@ export default function handlePauseModes (modeNumber) {
         {code: 1, mode: "Focus session in Progress"},
         {code: 2, mode: "Session is currently paused"},
         {code: 3, mode: "Session is on a short break"},
-        {code: 2, mode: "Session is on a long break"},
+        {code: 4, mode: "Session is on a long break"},
     ]
     let mappedMode = "";
     for(const modeMap of modesMapper)
         if(modeMap.code === modeNumber) mappedMode = modeMap.mode;
     return mappedMode;
 }
-    
+handlePauseModes(3)//?
