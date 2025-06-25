@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef } from "react";
 import {calculateTimeRemaining, fullSessionTime} from "../utils/utils";
 import togglePauseModes from "../utils/modeMapper";
 
@@ -50,14 +50,17 @@ export function ActionCtxProvider({children}){
         }
         
         // THE COUNT DOWN LOGIC
-        const minutes = time.mins
+        const minutes = time.mins;
         const totalSessionTime = fullSessionTime(minutes);
-        // let focusSessionInterval;
-        if(time.mins > 0 || time.secs > 0){
+        const actionIntervalRef = useRef();
+        if (time.mins > 0 || time.secs > 0) {
             setInputIsReadOnly(true);
-            setInterval(()=>setTime(calculateTimeRemaining(totalSessionTime)), 999)
+            if (!actionIntervalRef.current) {
+            actionIntervalRef.current = setInterval(() => {
+                setTime(calculateTimeRemaining(totalSessionTime));
+            }, 999);
+            }
         }
-        // clearInterval(focusSessionInterval)
     }
     
     function handleReset(e) {
