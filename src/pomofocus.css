@@ -107,7 +107,8 @@ header span{
   transition: opacity .3s, background-color .4s;
 }
 
-.btn-holder button:hover{
+.btn-holder button:hover,
+button.isPressed {
   opacity: .9;
   background-color: chocolate;
 }

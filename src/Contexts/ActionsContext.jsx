@@ -7,10 +7,8 @@ export function ActionCtxProvider({children}){
     // states and functions
     const [mode, setMode] = useState("")
     const [time, setTime] = useState(25);
-    
     const [isPaused, setIsPaused] = useState(0);
-    
-    
+    const [activeButtonId, setActiveButtonId] = useState(null);
     const [reset, setReset] = useState(false);
     const [shortBreak, setShortBreak] = useState(false);
     const [longBreak, setLongBreak] = useState(false);
@@ -19,11 +17,16 @@ export function ActionCtxProvider({children}){
     useEffect(()=>{
         setMode("Start a Focus Session");
     }, []);
-    
+
+    function addActiveButton(e){
+        setActiveButtonId(e.target.id);
+    }
+
     function handleAddTime (e) {
         setTime(e.target.value);
     }
-    function handleStartFocusSession() {
+    function handleStartFocusSession(e) {
+       addActiveButton(e);
         /**
          * PAUSE MODES 
          * 0 - Start - the count down not yet started, new Focus session e.g on page refresh
@@ -44,18 +47,21 @@ export function ActionCtxProvider({children}){
         
     }
     
-    function handleReset() {
+    function handleReset(e) {
+        addActiveButton(e);
         setMode("In Focus Mode");
         setIsPaused(0);
         
     }
         
-    function handleShortBreak() {
-
+    function handleShortBreak(e) {
+        addActiveButton(e);
+        setIsActive(true);
     }
 
-    function handleLongBreak() {
-
+    function handleLongBreak(e) {
+        addActiveButton(e);
+        setIsActive(true);
     }
 
     function handleSetTimeInputReadOnly() {
@@ -63,7 +69,7 @@ export function ActionCtxProvider({children}){
     }
 
     return <ActionContext.Provider value={
-        {mode, time, isPaused, handleStartFocusSession, handleReset,
+        {mode, time, isPaused, activeButtonId, handleStartFocusSession, handleReset,
             handleShortBreak, handleLongBreak, handleAddTime}
         }>
         {children}
