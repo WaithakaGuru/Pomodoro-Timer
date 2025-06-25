@@ -26,6 +26,20 @@ export function ActionCtxProvider({children}){
     function handleAddTime (e) {
         setTime({mins:e.target.value, secs: 0});
     }
+
+    function handlePauseModes (modeNumber) {
+        const modesMapper = [
+            {code: 0, mode: "Start a Focus Session"},
+            {code: 1, mode: "Focus session in Progress"},
+            {code: 2, mode: "Session is currently paused"},
+            {code: 3, mode: "Session is on a short break"},
+            {code: 2, mode: "Session is on a long break"},
+        ]
+        let mappedMode = "";
+        for(const modeMap of modesMapper)
+            if(modeMap.code === modeNumber) mappedMode = modeMap.mode;
+        return mappedMode;
+    }
     
     function handleStartFocusSession(e) {
         addActiveButton(e);
@@ -52,7 +66,7 @@ export function ActionCtxProvider({children}){
         const totalSessionTime = fullSessionTime(minutes);
         // let focusSessionInterval;
         if(time.mins > 0 || time.secs > 0){
-            handleSetTimeInputReadOnly();
+            setInputIsReadOnly(true);
             setInterval(()=>setTime(calculateTimeRemaining(totalSessionTime)), 999)
         }
         // clearInterval(focusSessionInterval)
@@ -71,10 +85,6 @@ export function ActionCtxProvider({children}){
 
     function handleLongBreak(e) {
         addActiveButton(e);
-    }
-
-    function handleSetTimeInputReadOnly() {
-        setInputIsReadOnly(true);
     }
 
     return <ActionContext.Provider value={
