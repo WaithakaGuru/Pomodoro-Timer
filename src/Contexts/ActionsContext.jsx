@@ -56,19 +56,20 @@ export function ActionCtxProvider({children}){
         // THE COUNT DOWN LOGIC
         const minutes = time.mins;
         const totalSessionTime = fullSessionTime(minutes);
-        if (time.mins > 0 || time.secs > 0) {
+        if(time.mins > 0 || time.secs > 0) {
             setInputIsReadOnly(true);
             if (!actionIntervalRef.current) {
                 actionIntervalRef.current = setInterval(() => {
-                    setTime(()=> calculateTimeRemaining(totalSessionTime));
+                    setTime(()=>{
+                        if(time.mins === 0 && time.secs === 0){
+                            clearInterval(actionIntervalRef.current);
+                            actionIntervalRef.current = null;
+                            setIsPaused(0)
+                            setMode(togglePauseModes(0));
+                        }else return calculateTimeRemaining(totalSessionTime)
+                    });
                 }, 999);
             }
-        }
-        if(time.mins === 0 && time.secs === 0){
-            clearInterval(actionIntervalRef.current);
-            actionIntervalRef.current = null;
-            setIsPaused(0)
-           setMode(togglePauseModes(0));
         }
     }
     
