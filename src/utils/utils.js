@@ -5,12 +5,14 @@ export function fullSessionTime(sessionTimeInMins) {
 export function calculateTimeRemaining(fullTime) {
   const currentTime = new Date().getTime();
   let timeRemaining = fullTime - currentTime;
-
-  let remainingMinutes = Math.floor(
-    (timeRemaining % (1000 * 60 * 60)) / (1000 * 60),
-  );
-  let secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-  return { mins: remainingMinutes, secs: secondsRemaining };
+  if(timeRemaining <= 0) return{mins: 0, secs: 0} ;
+  else {
+    let remainingMinutes = Math.floor(
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    let secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    return { mins: remainingMinutes, secs: secondsRemaining };
+  }
 }
 
 /**
