@@ -7,7 +7,7 @@ export default function togglePauseModes(modeNumber) {
     { code: 4, mode: "Session is on a long break" },
   ];
   let mappedMode = "";
-  for (const modeMap of modesMapper)
-    if (modeMap.code === modeNumber) mappedMode = modeMap.mode;
+  for (const {code, mode} of modesMapper)
+    if (code === modeNumber) mappedMode = mode;
   return mappedMode;
 }

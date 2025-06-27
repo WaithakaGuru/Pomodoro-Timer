@@ -26,17 +26,6 @@ export function ActionCtxProvider({ children }) {
   }
 
   function handleStartFocusSession(e) {
-    /**
-     * PAUSE MODES
-     * 0 - Start - the count down not yet started, new Focus session e.g on page refresh
-     * 1 - Pause - countdown is running and button displays 'pause'
-     *      for user to pause if need be
-     * 2 - resume - user has paused the count down and
-     *      btn displays 'resume' for user to resume the timer count down
-     * 3 - short break - session is on hold since user is taking a short break
-     * 4 - long break - session is on hold since user is taking a long break
-     */
-
     setActiveButtonId(e.target.id);
 
     if (isPaused === 0) {
@@ -53,7 +42,7 @@ export function ActionCtxProvider({ children }) {
       setMode(togglePauseModes(1));
     }
 
-    // THE COUNT DOWN LOGIC
+    // @TODO THE COUNT DOWN LOGIC
     const minutes = time.mins;
     const totalSessionTime = fullSessionTime(minutes);
     if (time.mins > 0 || time.secs > 0) {
@@ -62,10 +51,10 @@ export function ActionCtxProvider({ children }) {
         actionIntervalRef.current = setInterval(() => {
           setTime(() => {
             if (time.mins === 0 && time.secs === 0) {
-              clearInterval(actionIntervalRef.current);
-              actionIntervalRef.current = null;
               setIsPaused(0);
               setMode(togglePauseModes(0));
+              clearInterval(actionIntervalRef.current);
+              actionIntervalRef.current = null;
             } else return calculateTimeRemaining(totalSessionTime);
           });
         }, 999);
@@ -106,3 +95,14 @@ export function ActionCtxProvider({ children }) {
     </ActionContext.Provider>
   );
 }
+
+ /**
+     * PAUSE MODES
+     * 0 - Start - the count down not yet started, new Focus session e.g on page refresh
+     * 1 - Pause - countdown is running and button displays 'pause'
+     *      for user to pause if need be
+     * 2 - resume - user has paused the count down and
+     *      btn displays 'resume' for user to resume the timer count down
+     * 3 - short break - session is on hold since user is taking a short break
+     * 4 - long break - session is on hold since user is taking a long break
+     */
